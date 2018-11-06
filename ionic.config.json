@@ -1,0 +1,7 @@
+{
+  "name": "HobbySite",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
