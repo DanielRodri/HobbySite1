@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
+import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
@@ -25,7 +26,8 @@ var config = {
     MyApp,
     HomePage,
     ListPage,
-    ChatPage
+    ChatPage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,8 @@ var config = {
     MyApp,
     HomePage,
     ListPage,
-    ChatPage
+    ChatPage,
+    LoginPage
   ],
   providers: [
     StatusBar,

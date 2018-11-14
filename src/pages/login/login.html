@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content>
+	<ion-card>
+		<ion-card-header>
+			Login 
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list no-line>
+				<ion-item>
+					<ion-input type="text" placeholder="Username"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" placeholder="Password"></ion-input>
+				</ion-item>
+				<button ion-button block outline color="light">Log in</button>
+				<p>OR</p>
+				<button ion-button block color="facebook">
+					<ion-icon name="logo-facebook"></ion-icon> FACEBOOK
+        </button> 
+        <button ion-button block color="danger">
+					<ion-icon name="logo-google"></ion-icon> GOOGLE
+				</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card> 
+	<button class="bottom" ion-button clear full color="light">Don't have an account? Sign up</button>
+</ion-content> 
