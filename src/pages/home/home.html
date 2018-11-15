@@ -5,8 +5,8 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+  <ion-navbar color="customGray">
+    <button color="customYellow" ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
@@ -16,26 +16,26 @@
 
 <ion-content class="card-background-page">
 
-  <ion-card>
+  <ion-card (click)="goGroups('Sports')">
     <img src="../../assets/deporte.jpg">
     <div class="card-title">Deportes</div>
     
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="goGroups('Music')">
     <img src="../../assets/musica.jpe"/>
     <div class="card-title">Musica</div>
    
   </ion-card>
 
-  <ion-card (click)="hola()">
+  <ion-card (click)="goGroups('Books')">
     <img  src="../../assets/lectura.jpg"/>
     <div class="card-title">Libros</div>
   
   </ion-card>
 
   
-  <ion-card>
+  <ion-card (click)="goGroups('Arts')">
     <img src="../../assets/artes.jpg"/>
     <div class="card-title">Artes</div>
    

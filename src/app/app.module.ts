@@ -8,11 +8,22 @@ import { ChatPage } from '../pages/chat/chat';
 import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { RegisterPage } from '../pages/register/register';
-import {AngularFireModule} from 'angularfire2';
-import {AngularFireAuthModule} from 'angularfire2/auth';
-import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireModule} from '@angular/fire';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { ConfigPage } from '../pages/config/config';
+import { HobbyGroupsPage } from '../pages/hobby/hobby-groups/hobby-groups';
+import { HobbyGroupForumPage } from '../pages/hobby/group/hobby-group-forum/hobby-group-forum';
+import { HobbyGroupEventsPage } from '../pages/hobby/group/hobby-group-events/hobby-group-events';
+import { HobbyGroupTabsPage } from '../pages/hobby/group/hobby-group-tabs/hobby-group-tabs';
+import { UserGroupsPage } from '../pages/user/user-groups/user-groups';
+import { UserGroupsTabsPage } from '../pages/user/user-groups-tabs/user-groups-tabs';
+
+import { FirestoreProvider } from '../providers/firestore/firestore';
+import { TimeAgoPipe } from 'time-ago-pipe';
+
+
 
 var config = {
   apiKey: "AIzaSyDfoSzhIgB4Ina7RHnOLlvDlyOudU9c5sA",
@@ -26,9 +37,18 @@ var config = {
 @NgModule({
   declarations: [
     MyApp,
+    TimeAgoPipe,
     HomePage,
     ListPage,
     ChatPage,
+    ConfigPage,
+    HobbyGroupsPage,
+    HobbyGroupTabsPage,
+    HobbyGroupForumPage,
+    HobbyGroupEventsPage,
+    //HobbyGroupWriteModalPage,
+    UserGroupsPage,
+    UserGroupsTabsPage,
     LoginPage,
     RegisterPage
   ],
@@ -45,13 +65,22 @@ var config = {
     HomePage,
     ListPage,
     ChatPage,
+    ConfigPage,
+    HobbyGroupsPage,
+    HobbyGroupTabsPage,
+    HobbyGroupForumPage,
+    HobbyGroupEventsPage,
+    //HobbyGroupWriteModalPage,
+    UserGroupsPage,
+    UserGroupsTabsPage,
     LoginPage,
     RegisterPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FirestoreProvider
   ]
 })
 export class AppModule {}

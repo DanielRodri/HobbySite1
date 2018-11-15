@@ -1,6 +1,8 @@
 page-chat {
 
-    $userBackgroundColor: #387ef5;
+    $userBackgroundColor: color($colors, customYellow, base);
+    $userBackgroundColorGray: color($colors, customGray, base);
+    $userFontTextAreaColor: color($colors, customTextAreaFont, base);
     $toUserBackgroundColor: #fff;
   
     ion-content .scroll-content {
@@ -9,7 +11,7 @@ page-chat {
   
     ion-footer {
       box-shadow: 0 0 4px rgba(0, 0, 0, 0.11);
-      background-color: #fff;
+      background-color: $userBackgroundColorGray;
       height: 255px;
     }
   
@@ -24,7 +26,9 @@ page-chat {
         flex: 1;
         border: 0;
         border-bottom: 1px $userBackgroundColor;
+        background-color: $userBackgroundColorGray;
         border-style: solid;
+        color:$userFontTextAreaColor;
       }
     }
   
@@ -59,7 +63,7 @@ page-chat {
             margin-top: 5px;
             border-radius: 5px;
             padding: 8px;
-            border: 1px solid #ddd;
+            border: 1px solid $userBackgroundColor;
             color: #fff;
             width: auto;
             max-width: 80%;

@@ -8,6 +8,9 @@ import { ListPage } from '../pages/list/list';
 import { ChatPage } from '../pages/chat/chat';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { ConfigPage } from '../pages/config/config';
+import { UserGroupsTabsPage } from '../pages/user/user-groups-tabs/user-groups-tabs';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -27,8 +30,9 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage },
       { title: 'Chat', component: ChatPage },
+      { title: 'My Groups', component: UserGroupsTabsPage},
+      { title: 'Config', component: ConfigPage}
       { title: 'Login', component: LoginPage },
-      
     ];
 
   }
@@ -37,7 +41,8 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
+      //this.statusBar.styleDefault();
+      this.statusBar.styleLightContent()
       this.splashScreen.hide();
     });
   }
