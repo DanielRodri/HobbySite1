@@ -12,20 +12,34 @@
               <ion-icon name="close"></ion-icon>
             </button>
           </ion-buttons>
-      <ion-title>hobbyGroupWritePostModal</ion-title>
+      <ion-title>Add Post</ion-title>
     </ion-navbar>
   
   </ion-header>
   
   
   <ion-content padding>
-  
-  
-      <ion-fab bottom right>
-          <button ion-fab (click)="post()">
-            <ion-icon name="send"></ion-icon>
-          </button>
-        </ion-fab>
+          <ion-list>
+              <ion-item>
+                <ion-label color="primary">Post Data</ion-label>
+              </ion-item>
+
+              <ion-item>
+                  <ion-input placeholder="Img src" clearInput [value]="_img" (input)="setImg($event.target.value)"></ion-input>
+                </ion-item>
+            
+              <ion-item>
+                <ion-textarea placeholder="Enter a description" [value]="_message" (input)="setMessage($event.target.value)"></ion-textarea>
+              </ion-item>
+            </ion-list>
+            
+      
+          <ion-fab bottom right>
+              <button ion-fab (click)="addPost()">
+                <ion-icon name="send"></ion-icon>
+              </button>
+            </ion-fab>
+      
   
   </ion-content>
   

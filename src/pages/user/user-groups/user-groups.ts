@@ -64,7 +64,7 @@ export class UserGroupsPage {
     hobbys.forEach(element => {
       this._firestoreProvider.getAllHobbyGroups(element).subscribe((hobbyGroupsSnapshot)=>{
         hobbyGroupsSnapshot.forEach((hobbyGroupData:any)=>{
-          if(hobbyGroupData.payload.doc.data().members.includes(this._firestoreProvider.getActualUser())
+          if(hobbyGroupData.payload.doc.data().members.includes(this._firestoreProvider.getActualUser().uid)
             || hobbyGroupData.payload.doc.data().owner===this._firestoreProvider.getActualUser()){
             this._groups.push({
               id:hobbyGroupData.payload.doc.id,
@@ -80,7 +80,7 @@ export class UserGroupsPage {
     hobbys.forEach(element => {
       this._firestoreProvider.getAllHobbyGroups(element).subscribe((hobbyGroupsSnapshot)=>{
         hobbyGroupsSnapshot.forEach((hobbyGroupData:any)=>{
-          if(hobbyGroupData.payload.doc.data().owner===this._firestoreProvider.getActualUser()){
+          if(hobbyGroupData.payload.doc.data().owner===this._firestoreProvider.getActualUser().uid){
             this._groups.push({
               id:hobbyGroupData.payload.doc.id,
               data:hobbyGroupData.payload.doc.data()
@@ -95,7 +95,7 @@ export class UserGroupsPage {
     hobbys.forEach(element => {
       this._firestoreProvider.getAllHobbyGroups(element).subscribe((hobbyGroupsSnapshot)=>{
         hobbyGroupsSnapshot.forEach((hobbyGroupData:any)=>{
-          if(hobbyGroupData.payload.doc.data().members.includes(this._firestoreProvider.getActualUser())){
+          if(hobbyGroupData.payload.doc.data().members.includes(this._firestoreProvider.getActualUser().uid)){
             this._groups.push({
               id:hobbyGroupData.payload.doc.id,
               data:hobbyGroupData.payload.doc.data()

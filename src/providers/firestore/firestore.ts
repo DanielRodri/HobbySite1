@@ -12,7 +12,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 export class FirestoreProvider {
   private _actualHobby:string
   private _actualGroup:string
-  private _actualUser:string="uid1"
+  private _actualUser:any
 
   constructor(/*public http: HttpClient, */private _firestore: AngularFirestore) {
     console.log('Hello FirestoreProvider Provider');
@@ -54,6 +54,12 @@ export class FirestoreProvider {
   public addHobbyGroup(data){
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').add(data).then((ref)=>{
       this.setActualGroup(ref.id)
+    })
+  }
+  public addHobbyGroupPost(data){
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
+    doc(this._actualGroup).collection('/Forum').add(data).then((ref)=>{
+
     })
   }
 

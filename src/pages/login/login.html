@@ -1,5 +1,5 @@
 <ion-header>
-	
+
 </ion-header>
 
 
@@ -12,7 +12,7 @@
 		<ion-card-content>
 			<ion-list no-line>
 				<ion-item>
-					<ion-input type="text" [(ngModel)]="user.email" placeholder="Username"></ion-input>
+					<ion-input type="text" [(ngModel)]="user.email" placeholder="Email"></ion-input>
 				</ion-item>
 				<ion-item>
 					<ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
@@ -22,7 +22,7 @@
 				<button ion-button block color="facebook" (click)="loginWithFacebook()">
 					<ion-icon name="logo-facebook"></ion-icon> FACEBOOK
         </button> 
-        <button ion-button block color="danger">
+        <button ion-button block color="danger" (click)="loginWithGoogle()">
 					<ion-icon name="logo-google"></ion-icon> GOOGLE
 				</button>
 			</ion-list>

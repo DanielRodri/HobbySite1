@@ -32,7 +32,7 @@ export class LoginPage {
    try{
     this.afAutn.auth.signInWithEmailAndPassword(user.email,user.password)
     .then((res)=> {
-      
+      this._firestoreProvider.setActualUser(firebase.auth().currentUser)
       this.navCtrl.setRoot(HomePage);
 
     }).catch((err)=> {
@@ -59,9 +59,25 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage);
   }
 
-  loginWithFacebook(){
+  async loginWithFacebook(){
     try{
-    const result = this.afAutn.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    const result = await this.afAutn.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    if(result){
+      this._firestoreProvider.setActualUser(firebase.auth().currentUser)
+      this.navCtrl.setRoot(HomePage)
+    }
+
+    }
+    catch(e){
+      
+      console.error(e.message);
+    }
+
+  }
+
+  async loginWithGoogle(){
+    try{
+    const result = await this.afAutn.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
     if(result){
       this._firestoreProvider.setActualUser(firebase.auth().currentUser.uid)
       this.navCtrl.setRoot(HomePage)

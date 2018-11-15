@@ -12,7 +12,7 @@
             <ion-icon name="close"></ion-icon>
           </button>
         </ion-buttons>
-    <ion-title>hobbyAddGroupModal</ion-title>
+    <ion-title>Create a {{_hobbyName}} Group</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -25,15 +25,15 @@
         </ion-item>
       
         <ion-item>
-          <ion-input placeholder="Group Title" clearInput [value]="_title" (input)="setTitle($event.target.value)"></ion-input>
+          <ion-input placeholder="Img Source" clearInput [value]="_title" (input)="setTitle($event.target.value)"></ion-input>
         </ion-item>
       
         <ion-item>
-          <ion-textarea placeholder="Enter a description" [value]="_description" (input)="setDescription($event.target.value)"></ion-textarea>
+          <ion-textarea placeholder="Enter a Message" [value]="_description" (input)="setDescription($event.target.value)"></ion-textarea>
         </ion-item>
       </ion-list>
 
-    <ion-fab bottom right>
+    <ion-fab bottom right >
         <button ion-fab (click)="addGroup()">
           Create
         </button>

@@ -45,10 +45,10 @@ export class HobbyGroupsPage {
   }
 
   showAddGroupModal(){
-    let addGroupModal = this._modalCtrl.create('HobbyAddGroupModalPage')
+    let addGroupModal = this._modalCtrl.create('HobbyAddGroupModalPage',{hobbyName:this._title})
 
     addGroupModal.onDidDismiss(data => {
-      if(data!==undefined){
+      if(data!==undefined && data!==null){
         this.navCtrl.push(HobbyGroupTabsPage,{
           title:data.title
         })

@@ -17,12 +17,14 @@ import { FirestoreProvider } from '../../../providers/firestore/firestore';
 export class HobbyAddGroupModalPage {
   private _title:string
   private _description:string
+  private _hobbyName:string
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private _firestoreProvider: FirestoreProvider,
     private _viewCtrl:ViewController) {
       this._title=""
       this._description=""
+      this._hobbyName = this.navParams.get('hobbyName')
   }
 
   ionViewDidLoad() {

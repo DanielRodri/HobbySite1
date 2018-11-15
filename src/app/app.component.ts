@@ -32,7 +32,7 @@ export class MyApp {
       { title: 'Chat', component: ChatPage },
       { title: 'My Groups', component: UserGroupsTabsPage},
       { title: 'Config', component: ConfigPage},
-      { title: 'Login', component: LoginPage },
+      { title: 'Sing Out', component: LoginPage },
     ];
 
   }

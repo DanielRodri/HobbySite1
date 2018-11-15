@@ -18,15 +18,15 @@
 
               <ion-item>
                 <ion-avatar item-start>
-                  <img src="http://www.fyadenmac.org/assets/images/anonimo.jpg">
+                  <img src="{{post.data.owner.imgURL}}">
                 </ion-avatar>
-                <h2>Anonimo</h2>
+                <h2>{{post.data.owner.displayName}}</h2>
                 <!--<span>{{getDate(post.data.date) | timeAgo}} prueba</span>-->
                 
                 <p>{{post.data.date.toDate() | timeAgo}}</p>
               </ion-item>
             
-              <img src={{post.data.img}}>
+              <img src={{post.data.imgURL}}>
             
               <ion-card-content>
                 <p>{{post.data.message}}</p>
@@ -36,7 +36,7 @@
                 <ion-col>
                   <button ion-button icon-start clear small>
                     <ion-icon name="thumbs-up"></ion-icon>
-                    <div>{{post.data.likes}} Likes</div>
+                    <div>{{post.data.likes.length}} Likes</div>
                   </button>
                 </ion-col>
                 <ion-col>
