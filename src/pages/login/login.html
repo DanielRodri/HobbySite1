@@ -17,14 +17,14 @@
 		<ion-card-content>
 			<ion-list no-line>
 				<ion-item>
-					<ion-input type="text" placeholder="Username"></ion-input>
+					<ion-input type="text" [(ngModel)]="user.email" placeholder="Username"></ion-input>
 				</ion-item>
 				<ion-item>
-					<ion-input type="password" placeholder="Password"></ion-input>
+					<ion-input type="password" [(ngModel)]="user.password" placeholder="Password"></ion-input>
 				</ion-item>
-				<button ion-button block outline color="light">Log in</button>
+				<button ion-button block outline color="light" (click)="login(user)">Log in</button>
 				<p>OR</p>
-				<button ion-button block color="facebook">
+				<button ion-button block color="facebook" (click)="loginWithFacebook()">
 					<ion-icon name="logo-facebook"></ion-icon> FACEBOOK
         </button> 
         <button ion-button block color="danger">
@@ -33,5 +33,5 @@
 			</ion-list>
 		</ion-card-content>
 	</ion-card> 
-	<button class="bottom" ion-button clear full color="light">Don't have an account? Sign up</button>
+	<button class="bottom" ion-button clear full color="light" (click)="register()">Don't have an account? Sign up</button>
 </ion-content> 

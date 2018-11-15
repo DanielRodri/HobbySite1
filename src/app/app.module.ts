@@ -7,7 +7,9 @@ import { HomePage } from '../pages/home/home';
 import { ChatPage } from '../pages/chat/chat';
 import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
+import { RegisterPage } from '../pages/register/register';
 import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -27,13 +29,15 @@ var config = {
     HomePage,
     ListPage,
     ChatPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp), 
     AngularFireModule.initializeApp(config),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +45,8 @@ var config = {
     HomePage,
     ListPage,
     ChatPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
