@@ -41,7 +41,7 @@ export class HobbyAddGroupModalPage {
 
   addGroup(){
     if(this._title!==""&&this._description!=="")
-      this._firestoreProvider.addHobbyGroup({description:this._description,members:[],title:this._title,owner:this._firestoreProvider.getActualUser()}).then(()=>{
+      this._firestoreProvider.addHobbyGroup({description:this._description,members:[],title:this._title,owner:this._firestoreProvider.getActualUser().uid}).then(()=>{
           this._viewCtrl.dismiss({title:this._title});
       })
   }

@@ -65,7 +65,7 @@ export class UserGroupsPage {
       this._firestoreProvider.getAllHobbyGroups(element).subscribe((hobbyGroupsSnapshot)=>{
         hobbyGroupsSnapshot.forEach((hobbyGroupData:any)=>{
           if(hobbyGroupData.payload.doc.data().members.includes(this._firestoreProvider.getActualUser().uid)
-            || hobbyGroupData.payload.doc.data().owner===this._firestoreProvider.getActualUser()){
+            || hobbyGroupData.payload.doc.data().owner===this._firestoreProvider.getActualUser().uid){
             this._groups.push({
               id:hobbyGroupData.payload.doc.id,
               data:hobbyGroupData.payload.doc.data()

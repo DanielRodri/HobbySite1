@@ -4,6 +4,9 @@ import { User } from '../../models/user';
 import {AngularFireAuth} from 'angularfire2/auth'
 import { HomePage } from '../home/home';
 import { AlertController } from 'ionic-angular';
+import { FirestoreProvider } from '../../providers/firestore/firestore';
+import firebase from 'firebase';
+
 /**
  * Generated class for the RegisterPage page.
  *
@@ -21,13 +24,15 @@ export class RegisterPage {
   passwordtype:string='password';
   passeye:string ='eye';
 
-  constructor(private alertCtrl: AlertController,private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController,private afAuth: AngularFireAuth,
+    private _firestoreProvider: FirestoreProvider, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   async register(user: User){
     try{
     const result = await this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
     if(result){
+      this._firestoreProvider.setActualUser(firebase.auth().currentUser)
       this.navCtrl.setRoot(HomePage);
     }  
     }
