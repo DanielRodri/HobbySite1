@@ -22,6 +22,7 @@ import { UserGroupsTabsPage } from '../pages/user/user-groups-tabs/user-groups-t
 
 import { FirestoreProvider } from '../providers/firestore/firestore';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 
@@ -50,14 +51,14 @@ var config = {
     UserGroupsPage,
     UserGroupsTabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp), 
     AngularFireModule.initializeApp(config),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -74,13 +75,13 @@ var config = {
     UserGroupsPage,
     UserGroupsTabsPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FirestoreProvider
+    FirestoreProvider,
   ]
 })
 export class AppModule {}

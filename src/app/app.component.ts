@@ -18,7 +18,7 @@ import { UserGroupsTabsPage } from '../pages/user/user-groups-tabs/user-groups-t
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -31,7 +31,7 @@ export class MyApp {
       { title: 'List', component: ListPage },
       { title: 'Chat', component: ChatPage },
       { title: 'My Groups', component: UserGroupsTabsPage},
-      { title: 'Config', component: ConfigPage}
+      { title: 'Config', component: ConfigPage},
       { title: 'Login', component: LoginPage },
     ];
 

@@ -30,6 +30,9 @@ export class FirestoreProvider {
   public getActualUser(){
     return this._actualUser
   }
+  public setActualUser(user){
+    this._actualUser=user
+  }
 
 
   //Obtiene un servicio

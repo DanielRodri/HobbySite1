@@ -6,6 +6,7 @@ import { RegisterPage } from '../register/register';
 import { HomePage } from '../home/home';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
+import { FirestoreProvider } from '../../providers/firestore/firestore';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,7 +22,10 @@ import { AlertController } from 'ionic-angular';
 export class LoginPage {
 
   user = {} as User;
-  constructor(private alertCtrl: AlertController,private afAutn:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private alertCtrl: AlertController,private afAutn:AngularFireAuth,
+     public navCtrl: NavController,
+     public navParams: NavParams,
+     private _firestoreProvider: FirestoreProvider) {
   }
 
   async login(user: User){
@@ -59,6 +63,7 @@ export class LoginPage {
     try{
     const result = this.afAutn.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
     if(result){
+      this._firestoreProvider.setActualUser(firebase.auth().currentUser.uid)
       this.navCtrl.setRoot(HomePage)
     }
 
