@@ -50,11 +50,22 @@ export class FirestoreProvider {
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
           doc(this._actualGroup).collection('/Forum').doc(id).collection('/Comments').valueChanges();
   }
+  public getAllHobbyGroupPostLikes(postId){
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
+          doc(this._actualGroup).collection('/Forum').doc(postId).valueChanges();
+  }
   //Añade un grupo
   public addHobbyGroup(data){
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').add(data).then((ref)=>{
       this.setActualGroup(ref.id)
     })
+  }
+
+  public updateAllHobbyGroupPost(postId,data){
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
+          doc(this._actualGroup).collection('/Forum').doc(postId).set(data).then((ref)=>{
+
+          })
   }
   public addHobbyGroupPost(data){
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').

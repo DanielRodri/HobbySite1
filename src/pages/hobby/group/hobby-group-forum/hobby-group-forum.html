@@ -34,10 +34,14 @@
             
               <ion-row>
                 <ion-col>
-                  <button ion-button icon-start clear small>
+                  <button ion-button icon-start clear small (click)="giveLike(post.id,post.data)">
                     <ion-icon name="thumbs-up"></ion-icon>
                     <div>{{post.data.likes.length}} Likes</div>
                   </button>
+                  <button ion-button icon-start clear small color="danger" (click)="giveDislike(post.id,post.data)">
+                      <ion-icon name="thumbs-down"></ion-icon>
+                      <div>{{post.data.dislikes.length}} Dislikes</div>
+                    </button>
                 </ion-col>
                 <ion-col>
                   <button ion-button icon-start clear small>

@@ -39,6 +39,43 @@ export class HobbyGroupForumPage {
     //this.navCtrl.present(writePostModal);
   }
 
+  giveLike(post,postData){
+    let userUid=this._firestoreProvider.getActualUser().uid
+    if(postData.likes.includes(userUid)){
+        postData.likes.forEach( (item, index) => {
+          if(item === userUid) postData.likes.splice(index,1);
+        });
+      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+    }
+    else{
+      if(postData.dislikes.includes(userUid)){
+        postData.dislikes.forEach( (item, index) => {
+          if(item === userUid) postData.dislikes.splice(index,1);
+        });
+      }
+      postData.likes.push(this._firestoreProvider.getActualUser().uid)
+      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+    }
+  }
+  giveDislike(post,postData){
+    let userUid=this._firestoreProvider.getActualUser().uid
+    if(postData.dislikes.includes(userUid)){
+        postData.dislikes.forEach( (item, index) => {
+          if(item === userUid) postData.dislikes.splice(index,1);
+        });
+      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+    }
+    else{
+      if(postData.likes.includes(userUid)){
+        postData.likes.forEach( (item, index) => {
+          if(item === userUid) postData.likes.splice(index,1);
+        });
+      }
+      postData.dislikes.push(this._firestoreProvider.getActualUser().uid)
+      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+    }
+  }
+
   getPosts(){
     this._firestoreProvider.getAllHobbyGroupPosts().subscribe((hobbyGroupsSnapshot)=>{
       this._posts=[]

@@ -23,7 +23,7 @@ export class HobbyGroupWritePostModalPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private _firestoreProvider: FirestoreProvider,
     private _viewCtrl:ViewController) {
-      this._post={date:null,imgURL:"",likes:[],message:"",
+      this._post={date:null,imgURL:"",likes:[],dislikes:[],message:"",
                   /*owner:[this._firestoreProvider.getActualUser().uid,
                         this._firestoreProvider.getActualUser().email,
                         ""]*/
