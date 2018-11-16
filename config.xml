@@ -84,6 +84,11 @@
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
+    <plugin name="cordova-plugin-facebook4" spec="3.1.0">
+        <variable name="APP_ID" value="357419095023112" />
+        <variable name="APP_NAME" value="HobbySite" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.37.0" />
+    </plugin>
     <engine name="android" spec="7.1.1" />
     <engine name="ios" spec="4.5.5" />
 </widget>

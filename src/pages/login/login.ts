@@ -7,7 +7,7 @@ import { HomePage } from '../home/home';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
 import { FirestoreProvider } from '../../providers/firestore/firestore';
-
+import { Facebook} from '@ionic-native/facebook';
 /**
  * Generated class for the LoginPage page.
  *
@@ -24,6 +24,7 @@ export class LoginPage {
   user = {} as User;
   constructor(private alertCtrl: AlertController,private afAutn:AngularFireAuth,
      public navCtrl: NavController,
+     public facebook: Facebook,
      public navParams: NavParams,
      private _firestoreProvider: FirestoreProvider) {
   }
@@ -60,18 +61,16 @@ export class LoginPage {
   }
 
   async loginWithFacebook(){
-    try{
-    const result = await this.afAutn.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
-    if(result){
-      this._firestoreProvider.setActualUser(firebase.auth().currentUser)
-      this.navCtrl.setRoot(HomePage)
-    }
-
-    }
-    catch(e){
-      
-      console.error(e.message);
-    }
+    this.facebook.login(['email']).then(res=>{
+      const fc=firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
+      firebase.auth().signInWithCredential(fc).then(fs=>{
+        this.navCtrl.setRoot(HomePage);
+      }).catch(ferr=>{
+        alert("firebase error")
+      })
+    }).catch(err=>{
+      alert(JSON.stringify(err))
+    })
 
   }
 
