@@ -7,6 +7,8 @@ import { HomePage } from '../home/home';
 import firebase from 'firebase';
 import { AlertController } from 'ionic-angular';
 import { FirestoreProvider } from '../../providers/firestore/firestore';
+import { Facebook} from '@ionic-native/facebook';
+import {GooglePlus} from '@ionic-native/google-plus';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,6 +26,8 @@ export class LoginPage {
   user = {} as User;
   constructor(private alertCtrl: AlertController,private afAutn:AngularFireAuth,
      public navCtrl: NavController,
+     public facebook: Facebook,
+     public googleplus: GooglePlus,
      public navParams: NavParams,
      private _firestoreProvider: FirestoreProvider) {
   }
@@ -60,35 +64,44 @@ export class LoginPage {
   }
 
   async loginWithFacebook(){
-    try{
-    const result = await this.afAutn.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
-    if(result){
-      this._firestoreProvider.setActualUser(firebase.auth().currentUser)
-      this.navCtrl.setRoot(HomePage)
-    }
-
-    }
-    catch(e){
-      
-      console.error(e.message);
-    }
+    this.facebook.login(['email']).then(res=>{
+      const fc=firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
+      firebase.auth().signInWithCredential(fc).then(fs=>{
+        this._firestoreProvider.setActualUser(firebase.auth().currentUser.uid)
+        this.navCtrl.setRoot(HomePage);
+        
+      }).catch(ferr=>{
+        alert("firebase error")
+      })
+    }).catch(err=>{
+      alert(JSON.stringify(err))
+    })
 
   }
 
   async loginWithGoogle(){
-    try{
-    const result = await this.afAutn.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider);
-    if(result){
-      this._firestoreProvider.setActualUser(firebase.auth().currentUser.uid)
-      this.navCtrl.setRoot(HomePage)
-    }
-
-    }
-    catch(e){
-      
-      console.error(e.message);
+    try {
+  
+      const gplusUser = await this.googleplus.login({
+        'webClientId': '757754318399-ldvggv1vbm8chhoa2jcikgg1dkn22upj.apps.googleusercontent.com',
+        'offline': true,
+        'scopes': 'profile email'
+      })
+  
+      await firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
+      .then (suc=>{
+        this._firestoreProvider.setActualUser(firebase.auth().currentUser.uid)
+        this.navCtrl.setRoot(HomePage);
+        
+      }).catch(ns=>{
+        alert(JSON.stringify(ns));
+      })
+  
+    } catch(err) {
+      console.log(err)
     }
 
   }
+
 
 }

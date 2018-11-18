@@ -19,7 +19,8 @@ import { HobbyGroupEventsPage } from '../pages/hobby/group/hobby-group-events/ho
 import { HobbyGroupTabsPage } from '../pages/hobby/group/hobby-group-tabs/hobby-group-tabs';
 import { UserGroupsPage } from '../pages/user/user-groups/user-groups';
 import { UserGroupsTabsPage } from '../pages/user/user-groups-tabs/user-groups-tabs';
-
+import { Facebook} from '@ionic-native/facebook';
+import {GooglePlus} from '@ionic-native/google-plus';
 import { FirestoreProvider } from '../providers/firestore/firestore';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -80,6 +81,8 @@ var config = {
   providers: [
     StatusBar,
     SplashScreen,
+    Facebook,
+    GooglePlus,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirestoreProvider,
   ]
