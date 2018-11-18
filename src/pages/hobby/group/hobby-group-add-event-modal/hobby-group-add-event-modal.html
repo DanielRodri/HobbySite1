@@ -1,0 +1,64 @@
+<!--
+  Generated template for the HobbyGroupAddEventModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-buttons left>
+            <button navPop ion-button icon-only>
+              <ion-icon name="close"></ion-icon>
+            </button>
+          </ion-buttons>
+      <ion-title>Add Event</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+          <ion-list>
+              <ion-item>
+                <ion-label color="primary">Post Data</ion-label>
+              </ion-item>
+
+              <ion-item>
+                  <ion-input placeholder="Enter a title" clearInput [value]="_img" [(ngModel)]="_event.title"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-input placeholder="Enter a description" clearInput [value]="_img" [(ngModel)]="_event.description"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                      <ion-input placeholder="Enter a place" clearInput [value]="_img" [(ngModel)]="_event.place"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label color="primary">Schedule Event</ion-label>
+                      </ion-item>
+            
+                    <ion-item>
+                        <ion-label>Select a date</ion-label>
+                        <ion-datetime displayFormat="YYYY-MM-DD" min="{{_minDate}}" [(ngModel)]="_selectedDate">
+                        </ion-datetime>
+                      </ion-item>
+
+                    <ion-item>
+                        <ion-label>Select an hour</ion-label>
+                        <ion-datetime displayFormat="HH:mm" [(ngModel)]="_selectedHour">
+                        </ion-datetime>
+                      </ion-item>
+                    </ion-list>
+      
+          <ion-fab bottom right>
+              <button ion-fab (click)="addEvent()">
+                <ion-icon name="send"></ion-icon>
+              </button>
+            </ion-fab>
+      
+  
+  </ion-content>
+  

@@ -42,9 +42,7 @@ export class UserGroupsPage {
   itemTapped(event, group) {
     // That's right, we're pushing to ourselves!
     this._firestoreProvider.setActualGroup(group.id)
-    this.navCtrl.parent.parent.push(HobbyGroupTabsPage,{
-      title:group.data.title
-    });
+    this.navCtrl.parent.parent.push(HobbyGroupTabsPage);
   }
   getGroups(tab){
     this._groups=[]

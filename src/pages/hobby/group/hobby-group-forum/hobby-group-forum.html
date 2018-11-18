@@ -11,16 +11,15 @@
 
 
 <ion-content padding>
-  foro inicio
     <ion-list>
       <ion-item *ngFor="let post of _posts">
           <ion-card>
-
+            <!--{{getUserData(post.data.uid)}}--> 
               <ion-item>
                 <ion-avatar item-start>
-                  <img src="{{post.data.owner.imgURL}}">
+                  <img src="{{_postOwner.photoURL}}">
                 </ion-avatar>
-                <h2>{{post.data.owner.displayName}}</h2>
+                <h2>{{_postOwner.displayName}}</h2>
                 <!--<span>{{getDate(post.data.date) | timeAgo}} prueba</span>-->
                 
                 <p>{{post.data.date.toDate() | timeAgo}}</p>
@@ -34,14 +33,22 @@
             
               <ion-row>
                 <ion-col>
-                  <button ion-button icon-start clear small (click)="giveLike(post.id,post.data)">
+                  <button ion-button icon-start clear small color="primary" (click)="giveLike(post.id,post.data)" *ngIf="checkOption(post.data.likes)">
                     <ion-icon name="thumbs-up"></ion-icon>
                     <div>{{post.data.likes.length}} Likes</div>
                   </button>
-                  <button ion-button icon-start clear small color="danger" (click)="giveDislike(post.id,post.data)">
+                  <button ion-button icon-start clear small color="light" (click)="giveLike(post.id,post.data)" *ngIf="!checkOption(post.data.likes)">
+                      <ion-icon name="thumbs-up"></ion-icon>
+                      <div>{{post.data.likes.length}} Likes</div>
+                    </button>
+                  <button ion-button icon-start clear small color="danger" (click)="giveDislike(post.id,post.data)" *ngIf="checkOption(post.data.dislikes)">
                       <ion-icon name="thumbs-down"></ion-icon>
                       <div>{{post.data.dislikes.length}} Dislikes</div>
                     </button>
+                    <button ion-button icon-start clear small color="light" (click)="giveDislike(post.id,post.data)" *ngIf="!checkOption(post.data.dislikes)">
+                        <ion-icon name="thumbs-down"></ion-icon>
+                        <div>{{post.data.dislikes.length}} Dislikes</div>
+                      </button>
                 </ion-col>
                 <ion-col>
                   <button ion-button icon-start clear small>
@@ -60,7 +67,6 @@
         </button>
       </ion-fab>
       
-  foro end
 </ion-content>
 
 

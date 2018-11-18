@@ -1,0 +1,1 @@
+export interface Event {date:Date,dateCreated:Date,place:String,willGoOnes:Array<any>,interestedOnes:Array<any>,title:String,description:String,owner:any}

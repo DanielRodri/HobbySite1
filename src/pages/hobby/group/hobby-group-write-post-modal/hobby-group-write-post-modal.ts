@@ -27,9 +27,7 @@ export class HobbyGroupWritePostModalPage {
                   /*owner:[this._firestoreProvider.getActualUser().uid,
                         this._firestoreProvider.getActualUser().email,
                         ""]*/
-                  owner:{uid:this._firestoreProvider.getActualUser().uid,
-                        imgURL:"",
-                        displayName:this._firestoreProvider.getActualUser().email}
+                  owner:this._firestoreProvider.getActualUser().uid
                 };
       console.log(this._firestoreProvider.getActualUser())
     //this._title=""
@@ -50,11 +48,16 @@ export class HobbyGroupWritePostModalPage {
 
   addPost(){
     //if(this._title!==""&&this._description!=="")
-    this._post.date=new Date(Date.now())
-    if(this._post.message!==""||this._post.imgURL!=="")
+    
+    if(this._post.message!==""||this._post.imgURL!==""){
+
+      this._post.date=new Date(Date.now());
       this._firestoreProvider.addHobbyGroupPost(this._post).then(()=>{
         this._viewCtrl.dismiss({})
       });
+
+    }
+      
     //  })
   }
 

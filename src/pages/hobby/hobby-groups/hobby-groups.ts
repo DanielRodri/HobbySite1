@@ -39,9 +39,7 @@ export class HobbyGroupsPage {
   itemTapped(event, group) {
     // That's right, we're pushing to ourselves!
     this._firestoreProvider.setActualGroup(group.id)
-    this.navCtrl.push(HobbyGroupTabsPage,{
-      title:group.data.title
-    });
+    this.navCtrl.push(HobbyGroupTabsPage);
   }
 
   showAddGroupModal(){
@@ -49,9 +47,7 @@ export class HobbyGroupsPage {
 
     addGroupModal.onDidDismiss(data => {
       if(data!==undefined && data!==null){
-        this.navCtrl.push(HobbyGroupTabsPage,{
-          title:data.title
-        })
+        this.navCtrl.push(HobbyGroupTabsPage)
       }
     });
 

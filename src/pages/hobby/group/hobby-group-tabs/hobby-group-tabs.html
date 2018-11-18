@@ -14,10 +14,21 @@
 
 
 <ion-content padding>
-    <ion-tabs selectedIndex="0">
-        <ion-tab [root]="tab1Root" tabTitle="Forum" ></ion-tab>
-        <ion-tab [root]="tab2Root" tabTitle="Events" ></ion-tab>
-      </ion-tabs>
+    <div *ngIf="_joined; then thenBlock else elseBlock"></div>
+    
+    <ng-template #thenBlock>
+        <ion-tabs selectedIndex="0">
+            <ion-tab [root]="tab1Root" tabTitle="Forum" ></ion-tab>
+            <ion-tab [root]="tab2Root" tabTitle="Events" ></ion-tab>
+          </ion-tabs>
+    </ng-template>
+
+    <ng-template #elseBlock>
+        <button ion-button full (click)="joinGroup()">Join Group</button>
+        <h4 style="text-align: center">Join this group to add and see posts and events</h4>
+    </ng-template>
+
+    
 
 </ion-content>
 

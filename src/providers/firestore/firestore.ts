@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import firebase from 'firebase';
+
 
 /*
   Generated class for the FirestoreProvider provider.
@@ -31,7 +33,25 @@ export class FirestoreProvider {
     return this._actualUser
   }
   public setActualUser(user){
-    this._actualUser=user
+    /*
+    if(user.photoURL===null){
+      user.photoURL='./../../assets/default_user.png'
+    }
+    if(user.displayName===null){
+      user.displayName=user.email
+    }*/
+    //this._actualUser=user
+    this._actualUser = {uid:user.uid,email:user.email,displayName:user.displayName,photoURL:user.photoURL}
+    if(user.photoURL===null){
+      this._actualUser.photoURL='./../../assets/default_user.png'
+    }
+    if(user.displayName===null){
+      this._actualUser.displayName=user.email
+    }
+    return this._firestore.collection('/Users').doc(user.uid).set({email:this._actualUser.email,displayName:this._actualUser.displayName,photoURL:this._actualUser.photoURL})
+  }
+  public getUserData(userUid){
+    return this._firestore.collection('/Users').doc(userUid).valueChanges();
   }
 
 
@@ -41,7 +61,20 @@ export class FirestoreProvider {
     this.setActualHobby(documentId)
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').snapshotChanges();
   }
-  
+  public getHobbyGroup() {
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').doc(this._actualGroup).valueChanges();
+  }
+
+  public getAllHobbyGroupEvents() {
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
+          doc(this._actualGroup).collection('/Events').snapshotChanges();
+  }
+  public updateAllHobbyGroupEvent(eventId,data){
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
+          doc(this._actualGroup).collection('/Events').doc(eventId).set(data).then((ref)=>{
+          })
+  }
+
   public getAllHobbyGroupPosts() {
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
           doc(this._actualGroup).collection('/Forum').snapshotChanges();
@@ -50,14 +83,15 @@ export class FirestoreProvider {
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
           doc(this._actualGroup).collection('/Forum').doc(id).collection('/Comments').valueChanges();
   }
-  public getAllHobbyGroupPostLikes(postId){
-    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
-          doc(this._actualGroup).collection('/Forum').doc(postId).valueChanges();
-  }
   //Añade un grupo
   public addHobbyGroup(data){
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').add(data).then((ref)=>{
       this.setActualGroup(ref.id)
+    })
+  }
+  public updateAllHobyGroup(data){
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
+    doc(this._actualGroup).set(data).then((ref)=>{
     })
   }
 
@@ -67,9 +101,16 @@ export class FirestoreProvider {
 
           })
   }
+  
   public addHobbyGroupPost(data){
     return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
     doc(this._actualGroup).collection('/Forum').add(data).then((ref)=>{
+
+    })
+  }
+  public addHobbyGroupEvent(data){
+    return this._firestore.collection('/HobbysData').doc(this._actualHobby).collection('/Groups').
+    doc(this._actualGroup).collection('/Events').add(data).then((ref)=>{
 
     })
   }

@@ -19,6 +19,7 @@ import { HobbyGroupWritePostModalPage } from '../hobby-group-write-post-modal/ho
 export class HobbyGroupForumPage {
   private _title:string
   private _posts:Array<any>
+  private _postOwner:any={displayName:"Error observable en nombre y photo",photoURL:""}
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -45,7 +46,7 @@ export class HobbyGroupForumPage {
         postData.likes.forEach( (item, index) => {
           if(item === userUid) postData.likes.splice(index,1);
         });
-      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+      
     }
     else{
       if(postData.dislikes.includes(userUid)){
@@ -53,9 +54,9 @@ export class HobbyGroupForumPage {
           if(item === userUid) postData.dislikes.splice(index,1);
         });
       }
-      postData.likes.push(this._firestoreProvider.getActualUser().uid)
-      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+      postData.likes.push(userUid)
     }
+    this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
   }
   giveDislike(post,postData){
     let userUid=this._firestoreProvider.getActualUser().uid
@@ -63,7 +64,6 @@ export class HobbyGroupForumPage {
         postData.dislikes.forEach( (item, index) => {
           if(item === userUid) postData.dislikes.splice(index,1);
         });
-      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
     }
     else{
       if(postData.likes.includes(userUid)){
@@ -71,9 +71,15 @@ export class HobbyGroupForumPage {
           if(item === userUid) postData.likes.splice(index,1);
         });
       }
-      postData.dislikes.push(this._firestoreProvider.getActualUser().uid)
-      this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+      postData.dislikes.push(userUid)
     }
+    this._firestoreProvider.updateAllHobbyGroupPost(post,postData)
+  }
+  checkOption(list){
+    if(list.includes(this._firestoreProvider.getActualUser().uid))
+      return true
+    else
+      return false
   }
 
   getPosts(){
@@ -93,10 +99,15 @@ export class HobbyGroupForumPage {
     return this._firestoreProvider.getAllHobbyGroupPostComments(id);
   }
 
-  getDate(date){
-    console.log(date)
-    return new Date(date)
+  getUserData(userUid){
+    //console.log(this._firestoreProvider.getUserData(userUid))
+    
+    this._firestoreProvider.getUserData(userUid).subscribe((data:any)=>{
+      //if(data.displayName!==null)
+        this._postOwner={displayName:data.displayName,photoURL:data.photoURL}
+     // else
+       // this._postOwner={displayName:data.email,photoURL:data.photoURL}
+    })
   }
-
 
 }
