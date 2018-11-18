@@ -11,12 +11,18 @@
   
   <ion-content padding>
       <ion-list>
-          <button ion-item *ngFor="let group of _groups" (click)="itemTapped($event, group)">
-            {{group.data.title}}
-            <div class="item-note" item-end>
-              {{group.data.description}}
-            </div>
-          </button>
+        <ion-list *ngFor="let hobby of _groups">
+            <ion-item>
+                <ion-label color="primary">{{hobby.uid}} Groups</ion-label>
+              </ion-item>
+              <button ion-item *ngFor="let group of hobby.groups" (click)="itemTapped($event, hobby.uid, group)">
+                  {{group.data.title}}
+                  <div class="item-note" item-end>
+                    {{group.data.description}}
+                  </div>
+              </button>
+        </ion-list>
+          
         </ion-list>
   
   </ion-content>

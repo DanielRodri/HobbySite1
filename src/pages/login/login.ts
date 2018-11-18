@@ -34,7 +34,7 @@ export class LoginPage {
 
   async login(user: User){
    try{
-    this.afAutn.auth.signInWithEmailAndPassword(user.email,user.password)
+    await this.afAutn.auth.signInWithEmailAndPassword(user.email,user.password)
     .then((res)=> {
       this._firestoreProvider.setActualUser(firebase.auth().currentUser)
       this.navCtrl.setRoot(HomePage);
@@ -67,7 +67,7 @@ export class LoginPage {
     this.facebook.login(['email']).then(res=>{
       const fc=firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken)
       firebase.auth().signInWithCredential(fc).then(fs=>{
-        this._firestoreProvider.setActualUser(firebase.auth().currentUser.uid)
+        this._firestoreProvider.setActualUser(firebase.auth().currentUser)
         this.navCtrl.setRoot(HomePage);
         
       }).catch(ferr=>{
@@ -88,9 +88,9 @@ export class LoginPage {
         'scopes': 'profile email'
       })
   
-      await firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
+      await this.afAutn.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(gplusUser.idToken))
       .then (suc=>{
-        this._firestoreProvider.setActualUser(firebase.auth().currentUser.uid)
+        this._firestoreProvider.setActualUser(firebase.auth().currentUser)
         this.navCtrl.setRoot(HomePage);
         
       }).catch(ns=>{

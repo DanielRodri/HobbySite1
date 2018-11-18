@@ -33,14 +33,6 @@ export class FirestoreProvider {
     return this._actualUser
   }
   public setActualUser(user){
-    /*
-    if(user.photoURL===null){
-      user.photoURL='./../../assets/default_user.png'
-    }
-    if(user.displayName===null){
-      user.displayName=user.email
-    }*/
-    //this._actualUser=user
     this._actualUser = {uid:user.uid,email:user.email,displayName:user.displayName,photoURL:user.photoURL}
     if(user.photoURL===null){
       this._actualUser.photoURL='./../../assets/default_user.png'

@@ -28,10 +28,7 @@ export class UserGroupsTabsPage {
     console.log(event.target.value)
   }
   itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    /*this.navCtrl.push(ListPage, {
-      item: item
-    });*/
+
   }
 
 }
